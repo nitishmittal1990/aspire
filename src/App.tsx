@@ -2,7 +2,7 @@ import Sidebar from './layout/Sidebar.tsx';
 import Nav from './layout/Nav.tsx';
 import CardsDasboard from './components/domain/CardsDasboard.tsx';
 import type { ICompanyCard } from './interface/card.ts';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { getCards } from './api/cardService.ts';
 import AddCardModal from './components/domain/AddCardModal.tsx';
 import LoadingSpinner from './components/common/LoadingSpinner.tsx';
@@ -27,9 +27,9 @@ export const App = () => {
 
   const totalAvailableBalance = cards.reduce((sum, card) => sum + card.availableBalance, 0);
 
-  const handleAddCard = (card: ICompanyCard) => {
-    setCards([...cards, card]);
-  };
+  const handleAddCard = useCallback((card: ICompanyCard) => {
+    setCards((prevCards) => [...prevCards, card]);
+  }, []);
 
   return (
     <div className="font-sans">

@@ -131,14 +131,17 @@ const mockCards: ICompanyCard[] = [
 ];
 
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 
 export const getCards = async (): Promise<ICardResponse> => {
-  await delay(800); // Simulate network delay
-
-  return {
-    cards: mockCards,
-  };
+  
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      resolve( {
+        cards: mockCards,
+      });
+    }, 500)
+  );
 };
 
 
