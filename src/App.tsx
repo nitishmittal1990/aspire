@@ -5,6 +5,7 @@ import type { ICompanyCard } from './interface/card.ts';
 import { useEffect, useState } from 'react';
 import { getCards } from './api/cardService.ts';
 import AddCardModal from './components/domain/AddCardModal.tsx';
+import LoadingSpinner from './components/common/LoadingSpinner.tsx';
 
 export const App = () => {
   const [cards, setCards] = useState<ICompanyCard[]>([]);
@@ -50,10 +51,6 @@ export const App = () => {
             </div>
           </div>
         </section>
-        <div className="hidden lg:block">
-          {isLoading ? <div>Loading</div> : null}
-          {cards.length > 0 ? <CardsDasboard cards={cards} /> : null}
-        </div>
         {/* Mobile section */}
         <div className="fixed bottom-0 left-0 right-0 z-20 bg-white px-6 pb-0.5 pt-1 shadow-lg lg:hidden">
           <Nav />
@@ -72,9 +69,15 @@ export const App = () => {
               <AddCardModal onAddCard={handleAddCard} />
             </div>
           </div>
-          {isLoading ? <div>Loading</div> : null}
-          {cards.length > 0 ? <CardsDasboard cards={cards} /> : null}
         </section>
+        <div>
+          {isLoading ? <LoadingSpinner /> : null}
+          {cards.length > 0 ? (
+            <CardsDasboard cards={cards} />
+          ) : isLoading ? null : (
+            <div>No cards found</div>
+          )}
+        </div>
       </main>
     </div>
   );
