@@ -4,11 +4,11 @@ interface ISidebarProps {
   children: React.ReactNode;
 }
 
-const Sidebar = (props: ISidebarProps): React.ReactElement => {
+const Sidebar: React.FC<ISidebarProps> = (props): React.ReactElement => {
   const { children } = props;
 
   return (
-    <aside className="bg-secondary fixed bottom-0 left-0 h-screen w-[340px] p-10 lg:top-0">
+    <aside className="bg-secondary fixed bottom-0 left-0 hidden h-screen w-[340px] p-10 lg:top-0 lg:block">
       <a href="/" className="mb-5 block">
         <img src="/images/logo@3x.png" width="125" alt="logo" />
       </a>

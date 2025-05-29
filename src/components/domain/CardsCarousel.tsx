@@ -1,4 +1,3 @@
-import React from 'react';
 import type { ICompanyCard } from '../../interface/card';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -10,7 +9,7 @@ interface ICardsCarouselProps {
   onSlideChange: (index: number) => void;
 }
 
-const CardsCarousel = (props: ICardsCarouselProps): React.ReactElement => {
+const CardsCarousel = (props: ICardsCarouselProps) => {
   const { cards, onSlideChange } = props;
 
   const settings = {
@@ -34,7 +33,7 @@ const CardsCarousel = (props: ICardsCarouselProps): React.ReactElement => {
       <div className="card-carousel w-full">
         <Slider {...settings}>
           {cards.map((card, index) => {
-            const backgroundClassName = index % 2 === 0 ? 'bg-primary' : 'bg-secondary';
+            const backgroundClassName = index % 2 === 0 ? 'bg-primary' : 'bg-[#325BAF]';
             return (
               <div key={card.id} className="flex justify-center">
                 <Card

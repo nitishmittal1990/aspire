@@ -9,7 +9,7 @@ const CardAction: React.FC<ICardActionProps> = (props): JSX.Element => {
   const { isFreezed, onCardFreeze } = props;
 
   return (
-    <div className="grid grid-cols-5 rounded-xl bg-[#EDF3FF] px-4 py-5">
+    <div className="grid grid-cols-5 bg-[#EDF3FF] px-4 py-5 lg:rounded-xl">
       <div
         onClick={() => onCardFreeze(!isFreezed)}
         className="flex cursor-pointer flex-col items-center gap-y-2"

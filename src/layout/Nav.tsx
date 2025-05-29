@@ -10,34 +10,49 @@ import React from 'react';
 const Nav = (): React.ReactElement => {
   return (
     <nav className="lg:py-10">
-      <ul className="flex flex-col gap-10">
+      <ul className="flex flex-row justify-between lg:flex-col lg:gap-10">
         <li>
-          <a href="/" className="flex items-center gap-4 text-white">
-            <i className="icon-home text-2xl" />
+          <a
+            href="/"
+            className="flex flex-col items-center gap-0.5 text-[9px] text-[#DDDDDD] lg:flex-row lg:gap-4 lg:text-lg lg:text-white"
+          >
+            <i className="icon-home text-2xl text-[#DDDDDD] lg:text-white" />
             <span>Home</span>
           </a>
         </li>
         <li>
-          <a href="#" className="text-primary flex items-center gap-4">
-            <i className="icon-card text-2xl" />
+          <a
+            href="#"
+            className="text-primary flex flex-col items-center gap-0.5 text-[9px] lg:flex-row lg:gap-4 lg:text-lg"
+          >
+            <i className="icon-card text-2xl text-[#DDDDDD] lg:text-white" />
             <span>Cards</span>
           </a>
         </li>
         <li>
-          <a href="#" className="flex items-center gap-4 text-white">
-            <i className="icon-payments text-2xl" />
+          <a
+            href="#"
+            className="flex flex-col items-center gap-0.5 text-[9px] text-[#DDDDDD] lg:flex-row lg:gap-4 lg:text-lg lg:text-white"
+          >
+            <i className="icon-payments text-2xl text-[#DDDDDD] lg:text-white" />
             <span>Payments</span>
           </a>
         </li>
         <li>
-          <a href="#" className="flex items-center gap-4 text-white">
-            <i className="icon-credit text-2xl" />
+          <a
+            href="#"
+            className="flex flex-col items-center gap-0.5 text-[9px] text-[#DDDDDD] lg:flex-row lg:gap-4 lg:text-lg lg:text-white"
+          >
+            <i className="icon-credit text-2xl text-[#DDDDDD] lg:text-white" />
             <span>Credit</span>
           </a>
         </li>
         <li>
-          <a href="#" className="flex items-center gap-4 text-white">
-            <i className="icon-Account text-2xl" />
+          <a
+            href="#"
+            className="flex flex-col items-center gap-0.5 text-[9px] text-[#DDDDDD] lg:flex-row lg:gap-4 lg:text-lg lg:text-white"
+          >
+            <i className="icon-Account text-2xl text-[#DDDDDD] lg:text-white" />
             <span>Profile</span>
           </a>
         </li>

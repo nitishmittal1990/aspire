@@ -1,7 +1,6 @@
 import React from 'react';
 import { type ICompanyCard } from '../../interface/card';
 import Accordion from '../common/Accordion';
-import classNames from 'classnames';
 
 interface ICardDetailsProps {
   card: ICompanyCard;

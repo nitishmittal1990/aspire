@@ -33,7 +33,6 @@
 }
 .icon-home:before {
   content: '\e900';
-  color: #fff;
 }
 .icon-card:before {
   content: '\e901';
@@ -41,15 +40,12 @@
 }
 .icon-payments:before {
   content: '\e902';
-  color: #fff;
 }
 .icon-credit:before {
   content: '\e903';
-  color: #fff;
 }
 .icon-Account:before {
   content: '\e904';
-  color: #fff;
 }
 .icon-storage:before {
   content: '\e905';

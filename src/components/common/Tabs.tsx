@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, { useState } from 'react';
 
 export interface ITab {
@@ -9,22 +10,29 @@ export interface ITab {
 interface ITabsProps {
   tabs: ITab[];
   defaultTabId?: string;
+  tabsClassName?: string;
+  activeTabClassName?: string;
 }
 
-const Tabs: React.FC<ITabsProps> = ({ tabs, defaultTabId }) => {
+const Tabs: React.FC<ITabsProps> = (props) => {
+  const { tabs, defaultTabId, tabsClassName, activeTabClassName } = props;
+
   const [activeTab, setActiveTab] = useState<string>(defaultTabId || tabs[0]?.id);
 
   return (
     <div>
-      <nav className="-mb-px flex space-x-8" aria-label="Tabs">
+      <nav
+        className={classNames('-mb-px -mt-px flex space-x-8 pb-4', tabsClassName)}
+        aria-label="Tabs"
+      >
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`whitespace-nowrap border-b-2 px-1 py-1 text-sm font-medium transition-colors duration-200 ${
+            className={`whitespace-nowrap border-b-2 px-1 py-1 text-sm transition-colors duration-200 ${
               activeTab === tab.id
-                ? 'rounded-sm border-b-2 border-[#23CEFD] text-[#222222]'
-                : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                ? `rounded-sm border-b-2 border-[#23CEFD] font-bold ${activeTabClassName}`
+                : 'border-transparent font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
             }`}
           >
             {tab.label}
@@ -32,7 +40,7 @@ const Tabs: React.FC<ITabsProps> = ({ tabs, defaultTabId }) => {
         ))}
       </nav>
 
-      <div className="mt-4">{tabs.find((tab) => tab.id === activeTab)?.content}</div>
+      <div>{tabs.find((tab) => tab.id === activeTab)?.content}</div>
     </div>
   );
 };

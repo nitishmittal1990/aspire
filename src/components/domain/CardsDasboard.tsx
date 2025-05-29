@@ -1,4 +1,4 @@
-import React, { type JSX } from 'react';
+import { type JSX } from 'react';
 import Tabs, { type ITab } from '../common/Tabs';
 import type { ICompanyCard } from '../../interface/card';
 import CardsDasboardContent from './CardsDasboardContent';
@@ -26,8 +26,13 @@ const CardsDasboard = (props: ICardsDasboardProps): JSX.Element => {
   ];
 
   return (
-    <div className="mt-10">
-      <Tabs tabs={tabs} defaultTabId="debitCard" />
+    <div className="lg:mt-10 lg:bg-white">
+      <Tabs
+        tabsClassName="bg-secondary lg:bg-white px-4 lg:px-0"
+        activeTabClassName="text-white lg:text-[#222222]"
+        tabs={tabs}
+        defaultTabId="debitCard"
+      />
     </div>
   );
 };

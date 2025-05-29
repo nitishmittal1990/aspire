@@ -11,7 +11,7 @@ interface ICardProps {
   className?: string;
 }
 
-const Card = (props: ICardProps): React.ReactElement => {
+const Card: React.FC<ICardProps> = (props): React.ReactElement => {
   const { cardHolderName, cardNumber, expiryDate, isFreezed, className } = props;
 
   const maskedCardNumber = maskCardNumber(cardNumber);

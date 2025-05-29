@@ -8,12 +8,8 @@ interface IAccordionProps {
   defaultOpen?: boolean;
 }
 
-const Accordion: React.FC<IAccordionProps> = ({
-  title,
-  titleClassName,
-  children,
-  defaultOpen = false,
-}) => {
+const Accordion: React.FC<IAccordionProps> = (props) => {
+  const { title, titleClassName, children, defaultOpen = false } = props;
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (

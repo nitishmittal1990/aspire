@@ -35,8 +35,8 @@ export const App = () => {
       <Sidebar>
         <Nav />
       </Sidebar>
-      <main className="ml-[340px] flex-1 p-12">
-        <section>
+      <main className="flex-1 lg:ml-[340px] lg:p-12">
+        <section className="hidden lg:block">
           <div className="flex items-end justify-between">
             <div>
               <p className="mb-2 text-sm text-[#222222]">Available balance</p>
@@ -50,8 +50,31 @@ export const App = () => {
             </div>
           </div>
         </section>
-        {isLoading ? <div>Loading</div> : null}
-        {cards.length > 0 ? <CardsDasboard cards={cards} /> : null}
+        <div className="hidden lg:block">
+          {isLoading ? <div>Loading</div> : null}
+          {cards.length > 0 ? <CardsDasboard cards={cards} /> : null}
+        </div>
+        {/* Mobile section */}
+        <div className="fixed bottom-0 left-0 right-0 z-20 bg-white px-6 pb-0.5 pt-1 shadow-lg lg:hidden">
+          <Nav />
+        </div>
+        <section className="block w-full lg:hidden">
+          <div className="bg-secondary flex items-end justify-between p-6">
+            <div>
+              <p className="mb-2 text-sm text-white">Account balance</p>
+              <div className="flex items-center gap-2">
+                <span className="bg-primary rounded-md px-3 py-0.5 text-[13px] text-white">S$</span>
+                <span className="text-[26px] font-bold text-white">{totalAvailableBalance}</span>
+              </div>
+            </div>
+            <div className="flex flex-col items-end justify-end gap-4">
+              <i className="icon-home text-primary text-3xl" />
+              <AddCardModal onAddCard={handleAddCard} />
+            </div>
+          </div>
+          {isLoading ? <div>Loading</div> : null}
+          {cards.length > 0 ? <CardsDasboard cards={cards} /> : null}
+        </section>
       </main>
     </div>
   );

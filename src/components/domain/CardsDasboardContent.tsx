@@ -1,4 +1,4 @@
-import React, { useState, type JSX } from 'react';
+import { useState, type JSX } from 'react';
 import type { ICompanyCard } from '../../interface/card';
 import CardsCarousel from './CardsCarousel';
 import CardAction from './CardAction';
@@ -28,8 +28,20 @@ const CardsDasboardContent = (props: ICardsDasboardContentProps): JSX.Element =>
   };
 
   return (
-    <div className="rounded-lg border border-[#FCFCFC] p-10 shadow-lg">
-      <div className="grid grid-cols-2 gap-4">
+    <div className="rounded-lg lg:border lg:border-[#FCFCFC] lg:p-10 lg:shadow-lg">
+      <div className="lg:hidden">
+        <div className="bg-secondary px-5 py-4 pb-10">
+          <CardsCarousel cards={cards} onSlideChange={handleSlideChange} />
+        </div>
+        <CardAction isFreezed={currentCard.isFreezed} onCardFreeze={handleCardFreeze} />
+        <div className="flex flex-col gap-y-4 p-5 pb-20">
+          <CardDetails card={currentCard} />
+          {currentCard.recentTransactions.length > 0 ? (
+            <CardRecentTransactions recentTransactions={currentCard.recentTransactions} />
+          ) : null}
+        </div>
+      </div>
+      <div className="hidden grid-cols-2 gap-4 lg:grid">
         <div className="flex flex-col gap-y-10">
           <CardsCarousel cards={cards} onSlideChange={handleSlideChange} />
           <CardAction isFreezed={currentCard.isFreezed} onCardFreeze={handleCardFreeze} />

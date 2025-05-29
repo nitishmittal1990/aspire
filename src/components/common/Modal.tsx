@@ -8,7 +8,9 @@ interface IModalProps {
   className?: string;
 }
 
-const Modal: React.FC<IModalProps> = ({ isOpen, onClose, children, className }) => {
+const Modal: React.FC<IModalProps> = (props) => {
+  const { isOpen, onClose, children, className } = props;
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -41,7 +43,7 @@ const Modal: React.FC<IModalProps> = ({ isOpen, onClose, children, className }) 
       {/* Modal */}
       <div
         className={classNames(
-          'relative z-50 w-full max-w-lg rounded-lg bg-white p-6 shadow-xl',
+          'relative z-50 w-full max-w-sm rounded-lg bg-white p-6 shadow-xl lg:max-w-lg',
           'transform transition-all duration-300 ease-in-out',
           className
         )}
