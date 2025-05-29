@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import { maskCardNumber } from '../../utils/card';
 
 interface ICardProps {
   cardHolderName: string;
@@ -14,7 +13,8 @@ interface ICardProps {
 const Card: React.FC<ICardProps> = (props): React.ReactElement => {
   const { cardHolderName, cardNumber, expiryDate, isFreezed, className } = props;
 
-  const maskedCardNumber = maskCardNumber(cardNumber);
+  const last4Digits = cardNumber.slice(-4);
+  const maskedArray = Array(4).fill('');
 
   return (
     <div
@@ -26,7 +26,24 @@ const Card: React.FC<ICardProps> = (props): React.ReactElement => {
         <img src="images/logo-white.png" />
       </div>
       <p className="mb-6 text-2xl font-bold text-white">{cardHolderName}</p>
-      <p className="mb-4 text-sm font-bold tracking-[8px] text-white">{maskedCardNumber}</p>
+      <div className="mb-4 flex flex-row items-center gap-x-5 text-sm font-bold tracking-[8px] text-white">
+        <div className="flex flex-row gap-x-2">
+          {maskedArray.map((_, index) => (
+            <span key={index} className="h-2 w-2 rounded-full bg-white"></span>
+          ))}
+        </div>
+        <div className="flex flex-row gap-x-2">
+          {maskedArray.map((_, index) => (
+            <span key={index} className="h-2 w-2 rounded-full bg-white"></span>
+          ))}
+        </div>
+        <div className="flex flex-row gap-x-2">
+          {maskedArray.map((_, index) => (
+            <span key={index} className="h-2 w-2 rounded-full bg-white"></span>
+          ))}
+        </div>
+        {last4Digits}
+      </div>
       <div className="mb-2 flex flex-row items-center gap-x-8">
         <p className="text-[13px] text-white">Thru: {expiryDate}</p>
         <p className="flex items-center gap-x-2 text-[13px] text-white">
