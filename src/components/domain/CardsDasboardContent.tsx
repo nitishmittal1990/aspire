@@ -28,7 +28,7 @@ const CardsDasboardContent = (props: ICardsDasboardContentProps): JSX.Element =>
   };
 
   return (
-    <div className="rounded-lg lg:border lg:border-[#FCFCFC] lg:p-10 lg:shadow-lg">
+    <div className="rounded-lg lg:max-w-5xl lg:border lg:border-[#FCFCFC] lg:p-10 lg:shadow-[0_2px_12px_0_rgba(0,0,0,0.14)]">
       <div className="lg:hidden">
         <div className="bg-secondary px-5 py-4 pb-10">
           <CardsCarousel cards={cards} onSlideChange={handleSlideChange} />

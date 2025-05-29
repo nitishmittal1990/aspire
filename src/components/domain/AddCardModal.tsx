@@ -3,59 +3,77 @@ import { useModal } from '../../hooks/useModal';
 import Modal from '../common/Modal';
 import type { ICompanyCard } from '../../interface/card';
 import { CardType } from '../../interface/card';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { generateCardDetails } from '../../utils/card';
+import classNames from 'classnames';
 
 interface IAddCardModalProps {
   onAddCard: (card: ICompanyCard) => void;
 }
 
-const AddCardModal: React.FC<IAddCardModalProps> = (props): JSX.Element => {
-  const { onAddCard } = props;
-  const [cardHolderName, setCardHolderName] = useState('');
-  const [nameError, setNameError] = useState('');
+const NAME_REGEX = /^[A-Za-z\s]+$/;
+const DEFAULT_CARD_LIMIT = 50000;
+const DEFAULT_BALANCE = 5000;
 
+const AddCardModal: React.FC<IAddCardModalProps> = ({ onAddCard }): JSX.Element => {
+  const [cardHolderName, setCardHolderName] = useState<string>('');
+  const [nameError, setNameError] = useState<string>('');
   const { isOpen, open, close } = useModal();
 
-  const validateName = (name: string): boolean => {
+  const validateName = useCallback((name: string): boolean => {
     const trimmedName = name.trim();
-    const nameRegex = /^[A-Za-z\s]+$/;
-    if (!nameRegex.test(trimmedName)) {
+    if (!NAME_REGEX.test(trimmedName)) {
       setNameError('Name should contain only alphabets and spaces');
       return false;
     }
     setNameError('');
     return true;
-  };
+  }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleNameChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setCardHolderName(value);
+      validateName(value);
+    },
+    [validateName]
+  );
 
-    if (!validateName(cardHolderName)) {
-      return;
-    }
-
+  const createNewCard = useCallback((name: string): ICompanyCard => {
     const { cardNumber, expiryDate, cvv } = generateCardDetails();
-    const newCard: ICompanyCard = {
+    return {
       id: Date.now(),
-      cardNumber: cardNumber,
-      cardHolderName: cardHolderName.trim(),
-      expiryDate: expiryDate,
-      cvv: cvv,
+      cardNumber,
+      cardHolderName: name.trim(),
+      expiryDate,
+      cvv,
       cardType: CardType.VISA,
       isFreezed: false,
       isActive: true,
       currency: 'S$',
-      cardLimit: 50000,
-      availableBalance: 5000,
+      cardLimit: DEFAULT_CARD_LIMIT,
+      availableBalance: DEFAULT_BALANCE,
       isDebitCard: true,
       recentTransactions: [],
     };
-    onAddCard(newCard);
-    setCardHolderName('');
-    setNameError('');
-    close();
-  };
+  }, []);
+
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+
+      if (!validateName(cardHolderName)) {
+        return;
+      }
+
+      const newCard = createNewCard(cardHolderName);
+      onAddCard(newCard);
+      setCardHolderName('');
+      setNameError('');
+      close();
+    },
+    [cardHolderName, close, createNewCard, onAddCard, validateName]
+  );
 
   return (
     <div>
@@ -78,13 +96,11 @@ const AddCardModal: React.FC<IAddCardModalProps> = (props): JSX.Element => {
               type="text"
               id="cardHolderName"
               value={cardHolderName}
-              onChange={(e) => {
-                setCardHolderName(e.target.value);
-                validateName(e.target.value);
-              }}
-              className={`mt-1 block w-full rounded-md border ${
+              onChange={handleNameChange}
+              className={classNames(
+                'mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:border-[#325BAF] focus:outline-none focus:ring-1 focus:ring-[#325BAF]',
                 nameError ? 'border-red-500' : 'border-gray-300'
-              } px-3 py-2 shadow-sm focus:border-[#325BAF] focus:outline-none focus:ring-1 focus:ring-[#325BAF]`}
+              )}
               required
             />
             {nameError && <p className="mt-1 text-sm text-red-500">{nameError}</p>}

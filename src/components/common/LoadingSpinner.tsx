@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-const LoadingSpinner: React.FC = () => {
+const LoadingSpinner: React.FC = memo(() => {
   return (
     <div className="flex items-center justify-center p-8">
       <div className="relative h-12 w-12">
@@ -9,6 +9,8 @@ const LoadingSpinner: React.FC = () => {
       </div>
     </div>
   );
-};
+});
+
+LoadingSpinner.displayName = 'LoadingSpinner';
 
 export default LoadingSpinner;
