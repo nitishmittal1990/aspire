@@ -95,6 +95,7 @@ const AddCardModal: React.FC<IAddCardModalProps> = ({ onAddCard }): JSX.Element 
             <input
               type="text"
               id="cardHolderName"
+              autoFocus
               value={cardHolderName}
               onChange={handleNameChange}
               className={classNames(
@@ -102,6 +103,10 @@ const AddCardModal: React.FC<IAddCardModalProps> = ({ onAddCard }): JSX.Element 
                 nameError ? 'border-red-500' : 'border-gray-300'
               )}
               required
+              aria-required="true"
+              aria-invalid={!!nameError}
+              aria-describedby={nameError ? 'name-error' : undefined}
+              placeholder="Enter cardholder name"
             />
             {nameError && <p className="mt-1 text-sm text-red-500">{nameError}</p>}
           </div>

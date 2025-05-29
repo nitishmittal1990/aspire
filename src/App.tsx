@@ -42,7 +42,12 @@ export const App = () => {
             <div>
               <p className="mb-2 text-sm text-[#222222]">Available balance</p>
               <div className="flex items-center gap-2">
-                <span className="bg-primary rounded-md px-3 py-0.5 text-[13px] text-white">S$</span>
+                <span
+                  className="bg-primary rounded-md px-3 py-0.5 text-[13px] text-white"
+                  aria-label="Currency"
+                >
+                  S$
+                </span>
                 <span className="text-[26px] font-bold">{totalAvailableBalance}</span>
               </div>
             </div>
@@ -60,7 +65,12 @@ export const App = () => {
             <div>
               <p className="mb-2 text-sm text-white">Account balance</p>
               <div className="flex items-center gap-2">
-                <span className="bg-primary rounded-md px-3 py-0.5 text-[13px] text-white">S$</span>
+                <span
+                  className="bg-primary rounded-md px-3 py-0.5 text-[13px] text-white"
+                  aria-label="Currency"
+                >
+                  S$
+                </span>
                 <span className="text-[26px] font-bold text-white">{totalAvailableBalance}</span>
               </div>
             </div>

@@ -9,7 +9,7 @@ import React from 'react';
 
 const Nav = (): React.ReactElement => {
   return (
-    <nav className="lg:py-10">
+    <nav className="lg:py-10" role="navigation" aria-label="navigation">
       <ul className="flex flex-row justify-between lg:flex-col lg:gap-10">
         <li>
           <a
