@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+@import './font.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card-carousel .slick-dots li {
+  width: 8px;
+  height: 8px;
+  padding: 0 8px;
+  &.slick-active {
+    padding-right: 12px;
+  }
+}
+
+.card-carousel .slick-dots li button::before {
+  display: none;
+}
+.card-carousel .slick-dots li button {
+  @apply bg-primary/20;
+  height: 8px;
+  width: 8px;
+  border-radius: 100%;
+}
+
+.card-carousel .slick-dots li.slick-active button {
+  width: 16px;
+  height: 8px;
+  border-radius: 8px;
+  @apply bg-primary;
+}
