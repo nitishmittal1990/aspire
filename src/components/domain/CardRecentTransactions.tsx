@@ -1,6 +1,6 @@
 import React from 'react';
-import { TransactionCategoryType, type ITransaction } from '../../interface/card';
-import Accordion from '../common/Accordion';
+import { TransactionCategoryType, type ITransaction } from '@/interface/card';
+import Accordion from '@/components/common/Accordion';
 import classNames from 'classnames';
 
 interface ITransactionCategoryIconStyle {
@@ -104,7 +104,7 @@ const CardRecentTransactions: React.FC<ICardRecentTransactionsProps> = (props) =
               </div>
             </div>
           ))}
-          <div className="text-primary -mt-2 flex justify-center border border-[#DDFFEC] bg-[#EDFFF5] p-6 pb-5 text-[13px]">
+          <div className="-mt-2 flex justify-center border border-[#DDFFEC] bg-[#EDFFF5] p-6 pb-5 text-[13px] text-primary">
             View all card transactions
           </div>
         </div>
